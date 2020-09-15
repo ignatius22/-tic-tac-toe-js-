@@ -31,3 +31,13 @@
   font-size: 80px;
   font-weight: 500;
 }
+
+h5,
+label {
+  font-family: 'Philosopher', sans-serif;
+}
+
+.sh {
+  font-family: 'Caveat', cursive;
+  font-size: 40px;
+}
