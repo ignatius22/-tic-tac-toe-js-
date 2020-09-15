@@ -1,5 +1,5 @@
 const playerFactory = (name, mark) => {
-	  const playTurn = (board, cell) => {
+  const playTurn = (board, cell) => {
     const idx = board.cells.findIndex(position => position === cell);
     if (board.boardArray[idx] === '') {
       board.render();
@@ -9,12 +9,11 @@ const playerFactory = (name, mark) => {
   };
 
   return { name, mark, playTurn };
-
 };
 
 
 const boardModule = (() => {
-	 let boardArray = ['', '', '', '', '', '', '', '', ''];
+  let boardArray = ['', '', '', '', '', '', '', '', ''];
   const gameBoard = document.querySelector('#board');
   const cells = Array.from(document.querySelectorAll('.cell'));
   let winner = null;
@@ -48,7 +47,7 @@ const boardModule = (() => {
     });
     return winner || (boardArray.includes('') ? null : 'Tie');
   };
-    return {
+  return {
     render,
     gameBoard,
     cells,
@@ -56,7 +55,6 @@ const boardModule = (() => {
     checkWin,
     reset,
   };
- 
 })();
 
 const gamePlay = (() => {
@@ -68,10 +66,10 @@ const gamePlay = (() => {
   let playerOne;
   let playerTwo;
 
-    const switchTurn = () => {
+  const switchTurn = () => {
     currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
   };
-    const gameRound = () => {
+  const gameRound = () => {
     const board = boardModule;
     const gameStatus = document.querySelector('.game-status');
     if (currentPlayer.name !== '') {
@@ -99,7 +97,7 @@ const gamePlay = (() => {
       }
     });
   };
-   const gameInit = () => {
+  const gameInit = () => {
     if (playerOneName.value !== '' && playerTwoName.value !== '') {
       playerOne = playerFactory(playerOneName.value, 'X');
       playerTwo = playerFactory(playerTwoName.value, 'O');
@@ -108,7 +106,7 @@ const gamePlay = (() => {
     }
   };
 
-    form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', (event) => {
     event.preventDefault();
     if (playerOneName.value !== '' && playerTwoName.value !== '') {
       gameInit();
@@ -118,7 +116,7 @@ const gamePlay = (() => {
       window.location.reload();
     }
 
-        resetBtn.addEventListener('click', () => {
+    resetBtn.addEventListener('click', () => {
       document.querySelector('.game-status').textContent = 'Board: ';
       document.querySelector('#player1').value = '';
       document.querySelector('#player2').value = '';
@@ -128,5 +126,5 @@ const gamePlay = (() => {
       gameInit,
     };
   });
-    gamePlay.gameInit();
+  gamePlay.gameInit();
 })();
