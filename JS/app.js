@@ -27,6 +27,8 @@ const boardModule = (() => {
   const reset = () => {
     boardArray = ['', '', '', '', '', '', '', '', ''];
   };
+  const checkWin = () => {
 
+  };
  
 })();
