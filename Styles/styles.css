@@ -8,3 +8,9 @@
   width: 245px;
   font-family: 'Caveat', cursive;
 }
+
+.cell {
+  border: 2px solid black;
+  height: 80px;
+  width: 80px;
+}
