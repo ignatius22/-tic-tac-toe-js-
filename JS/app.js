@@ -39,6 +39,14 @@ const boardModule = (() => {
       [2, 4, 6],
     ];
 
-
+    winArrays.forEach((combo) => {
+      if (boardArray[combo[0]]
+                && boardArray[combo[0]] === boardArray[combo[1]]
+                && boardArray[combo[0]] === boardArray[combo[2]]) {
+        winner = 'current';
+      }
+    });
+    return winner || (boardArray.includes('') ? null : 'Tie');
+  };
  
 })();
