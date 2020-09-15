@@ -71,4 +71,32 @@ const gamePlay = (() => {
     const switchTurn = () => {
     currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
   };
+    const gameRound = () => {
+    const board = boardModule;
+    const gameStatus = document.querySelector('.game-status');
+    if (currentPlayer.name !== '') {
+      gameStatus.textContent = `${currentPlayer.name}'s Turn`;
+    } else {
+      gameStatus.textContent = 'Board: ';
+    }
+    board.gameBoard.addEventListener('click', (event) => {
+      event.preventDefault();
+      const play = currentPlayer.playTurn(board, event.target);
+      if (play !== null) {
+        board.boardArray[play] = `${currentPlayer.mark}`;
+        board.render();
+        const winStatus = board.checkWin();
+        if (winStatus === 'Tie') {
+          gameStatus.textContent = 'Tie!';
+        } else if (winStatus === null) {
+          switchTurn();
+          gameStatus.textContent = `${currentPlayer.name}'s Turn`;
+        } else {
+          gameStatus.textContent = `Winner is ${currentPlayer.name}`;
+          board.reset();
+          board.render();
+        }
+      }
+    });
+  };
 })();
