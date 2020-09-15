@@ -7,8 +7,8 @@ This is a Tic Tac Toe game project from The Odin Curriculum based on factory fun
 [live demo](https://rawcdn.githack.com/ignatius22/Tic-Tac-Toe-js/864ea3cc130955dad4dc7519d3c0ba4b8b8215b4/index.html)
 
 - Screenshot
-![alt text](form.png)
-![alt text](board.png)
+![alt text](images/form.png)
+![alt text](images/board.png)
 
 
 
