@@ -48,5 +48,13 @@ const boardModule = (() => {
     });
     return winner || (boardArray.includes('') ? null : 'Tie');
   };
+    return {
+    render,
+    gameBoard,
+    cells,
+    boardArray,
+    checkWin,
+    reset,
+  };
  
 })();
