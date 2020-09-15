@@ -18,3 +18,16 @@
 .hidden {
   display: none;
 }
+
+
+.player-info,
+.game-status {
+  width: 80%;
+}
+
+.mid-title {
+  color: green;
+  font-family: 'Grenze Gotisch', cursive;
+  font-size: 80px;
+  font-weight: 500;
+}
