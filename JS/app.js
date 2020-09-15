@@ -11,6 +11,19 @@ const playerFactory = (name, mark) => {
   return { name, mark, playTurn };
 
 };
+
+
 const boardModule = (() => {
+	 let boardArray = ['', '', '', '', '', '', '', '', ''];
+  const gameBoard = document.querySelector('#board');
+  const cells = Array.from(document.querySelectorAll('.cell'));
+  let winner = null;
+
+  const render = () => {
+    boardArray.forEach((mark, idx) => {
+      cells[idx].textContent = boardArray[idx];
+    });
+  };
+
  
 })();
