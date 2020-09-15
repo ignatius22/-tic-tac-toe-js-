@@ -60,5 +60,11 @@ const boardModule = (() => {
 })();
 
 const gamePlay = (() => {
-
+  const playerOneName = document.querySelector('#player1');
+  const playerTwoName = document.querySelector('#player2');
+  const form = document.querySelector('.player-info');
+  const resetBtn = document.querySelector('#reset');
+  let currentPlayer;
+  let playerOne;
+  let playerTwo;
 })();
