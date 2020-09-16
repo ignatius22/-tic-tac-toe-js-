@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Tic-tac-toe</title>
-</head>
-<body>
-	
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Styles/styles.css" />
+    <link rel="stylesheet" href="Styles/bootswatch.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat&family=Grenze+Gotisch:wght@200&family=Philosopher&display=swap"
+      rel="stylesheet"
+    />
+    <title>Tic-tac-toe</title>
+  </head>
+
+  <body>
+    <h2 class="text-center mt-4">
+      <span class="sh">Tic</span><span class="mid-title">Tac</span
+      ><span class="sh">Toe</span>
+    </h2>
+    <h5 class="text-center">
+      Enter players' names and click play to start the game!
+    </h5>
+    <div class="container w-50 shadow-lg p-3 mt-4">
+      <form class="player-info mb-4">
+        <div class="form-group">
+          <label for="player1">Player 1 (X)</label>
+          <input
+            type="text"
+            class="form-control"
+            id="player1"
+            placeholder="Name of player 1"
+          />
+        </div>
+        <div class="form-group">
+          <label for="player2">Player 2 (O)</label>
+          <input
+            type="text"
+            class="form-control"
+            id="player2"
+            placeholder="Name of player 2"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Play</button>
+      </form>
+      <div class="col-4 offset-4 place hidden">
+        <div class="alert alert-primary game-status text-center">
+          <h4>Board:</h4>
+        </div>
+        <div class="container mx-auto">
+          <div id="board">
+            <div class="cell text-center display-4"></div>
+            <div class="cell text-center display-4"></div>
+            <div class="cell text-center display-4"></div>
+            <div class="cell text-center display-4"></div>
+            <div class="cell text-center display-4"></div>
+            <div class="cell text-center display-4"></div>
+            <div class="cell text-center display-4"></div>
+            <div class="cell text-center display-4"></div>
+            <div class="cell text-center display-4"></div>
+          </div>
+        </div>
+        <button id="reset" class="mt-4 text-center btn btn-primary">
+          Restart
+        </button>
+      </div>
+    </div>
+		 <script src="./JS/logic.js" defer></script>
+  <script src="./JS/dom.js" defer></script>
+		
+  </body>
 </html>

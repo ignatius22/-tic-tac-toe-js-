@@ -1,0 +1,42 @@
+/* custom css */
+
+#board {
+  border: 2px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  height: 270px;
+  width: 245px;
+  font-family: 'Caveat', cursive;
+}
+
+.cell {
+  border: 2px solid black;
+  height: 80px;
+  width: 80px;
+}
+
+.hidden {
+  display: none;
+}
+
+.player-info,
+.game-status {
+  width: 80%;
+}
+
+.mid-title {
+  color: green;
+  font-family: 'Grenze Gotisch', cursive;
+  font-size: 80px;
+  font-weight: 500;
+}
+
+h5,
+label {
+  font-family: 'Philosopher', sans-serif;
+}
+
+.sh {
+  font-family: 'Caveat', cursive;
+  font-size: 40px;
+}
