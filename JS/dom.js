@@ -1,71 +1,107 @@
-const gamePlay = (() => {
-  const playerOneName = document.querySelector('#player1');
-  const playerTwoName = document.querySelector('#player2');
-  const form = document.querySelector('.player-info');
-  const resetBtn = document.querySelector('#reset');
-  let currentPlayer;
-  let playerOne;
-  let playerTwo;
+// eslint-disable-next-line import/extensions
+// import * as gameLogic from './game_logic.js';
+const gameLogic = require('./logic.js');
 
-  const switchTurn = () => {
-    currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
-  };
-  const gameRound = () => {
-    const board = boardModule;
-    const gameStatus = document.querySelector('.game-status');
-    if (currentPlayer.name !== '') {
-      gameStatus.textContent = `${currentPlayer.name}'s Turn`;
-    } else {
-      gameStatus.textContent = 'Board: ';
-    }
-    board.gameBoard.addEventListener('click', (event) => {
-      event.preventDefault();
-      const play = currentPlayer.playTurn(board, event.target);
-      if (play !== null) {
-        board.boardArray[play] = `${currentPlayer.mark}`;
-        board.render();
-        const winStatus = board.checkWin();
-        if (winStatus === 'Tie') {
-          gameStatus.textContent = 'Tie!';
-        } else if (winStatus === null) {
-          switchTurn();
-          gameStatus.textContent = `${currentPlayer.name}'s Turn`;
-        } else {
-          gameStatus.textContent = `Winner is ${currentPlayer.name}`;
-          board.reset();
-          board.render();
-        }
-      }
-    });
-  };
+const newGameBtn = document.getElementById('new-game-btn');
+const newGameBox = document.getElementById('new-game-box');
+const replayGameBtn = document.getElementById('replay-game-btn');
+const winnerBanner = document.querySelector('.winner-banner');
+const playerBox = document.getElementById('player-box');
+const board = document.getElementById('board');
+const cells = document.querySelectorAll('.board-cell');
+const p1Badge = document.getElementById('p1-badge');
+const p2Badge = document.getElementById('p2-badge');
+const resetBtn = document.getElementById('reset-btn');
+const gameResult = document.querySelector('.game-result');
 
-  const gameInit = () => {
-    if (playerOneName.value !== '' && playerTwoName.value !== '') {
-      playerOne = playerFactory(playerOneName.value, 'X');
-      playerTwo = playerFactory(playerTwoName.value, 'O');
-      currentPlayer = playerOne;
-      gameRound();
-    }
-  };
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    if (playerOneName.value !== '' && playerTwoName.value !== '') {
-      gameInit();
-      form.classList.add('hidden');
-      document.querySelector('.place').classList.remove('hidden');
-    } else {
-      window.location.reload();
-    }
+let game;
+const player1 = gameLogic.Player();
+const player2 = gameLogic.Player();
 
-    resetBtn.addEventListener('click', () => {
-      document.querySelector('.game-status').textContent = 'Board: ';
-      document.querySelector('#player1').value = '';
-      document.querySelector('#player2').value = '';
-      window.location.reload();
-    });
-    return {
-      gameInit,
-    };
-    gamePlay.gameInit();
+
+const showActivePlayer = () => {
+  if (game.currentTurn() === player1) {
+    p1Badge.classList.add('active');
+    p2Badge.classList.remove('active');
+  }
+  if (game.currentTurn() === player2) {
+    p2Badge.classList.add('active');
+    p1Badge.classList.remove('active');
+  }
+};
+
+const clearBoard = () => {
+  cells.forEach((cell) => {
+    if (cell.classList.value.includes('x')) {
+      cell.classList.remove('x');
+    }
+    if (cell.classList.value.includes('o')) {
+      cell.classList.remove('o');
+    }
+    game.board.clearBoard();
   });
-})();
+};
+
+const gameInit = () => {
+  game = gameLogic.Game(player1, player2);
+  clearBoard();
+  showActivePlayer();
+};
+
+const showWinner = () => {
+  board.classList.toggle('d-none');
+  winnerBanner.classList.toggle('d-none');
+  if (game.getWinner() === 'Draw') {
+    gameResult.innerHTML = `It's a ${game.getWinner()} !`;
+  } else {
+    gameResult.innerHTML = `${game.getWinner()} WINS!`;
+  }
+};
+
+newGameBtn.addEventListener('click', () => {
+  gameInit();
+  newGameBox.classList.toggle('d-none');
+  board.classList.toggle('d-none');
+  playerBox.classList.toggle('hidden');
+});
+
+replayGameBtn.addEventListener('click', () => {
+  gameInit();
+  board.classList.toggle('d-none');
+  winnerBanner.classList.toggle('d-none');
+});
+
+resetBtn.addEventListener('click', () => {
+  gameInit();
+});
+
+cells.forEach((cell, i) => {
+  cell.addEventListener('click', () => {
+    if (game.isOn()) {
+      cell.classList.add(`${game.mark(i)}`);
+      if (game.isOn()) {
+        showActivePlayer();
+      } else {
+        showWinner();
+      }
+    }
+  });
+});
+
+p1Badge.addEventListener('click', () => {
+  // eslint-disable-next-line no-alert
+  const player1Name = prompt('Enter your name: ');
+  if (player1Name !== '') {
+    player1.name = player1Name;
+    p1Badge.textContent = player1.name;
+  }
+});
+
+p2Badge.addEventListener('click', () => {
+  // eslint-disable-next-line no-alert
+  const player2Name = prompt('Enter your name: ');
+  if (player2Name !== '') {
+    player2.name = player2Name;
+    p2Badge.textContent = player2.name;
+  }
+});

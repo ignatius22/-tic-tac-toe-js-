@@ -4,7 +4,7 @@
   "description": "This is a Tic Tac Toe game project from The Odin Curriculum based on factory functions.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
     "eslint": "^7.1.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
-    "jest": "^26.1.0",
+    "jest": "^26.5.2",
     "jest-dom": "^4.0.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
