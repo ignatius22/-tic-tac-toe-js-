@@ -1,9 +1,7 @@
 const gameLogic = require('../JS/logic.js');
 // testung gameboard class
 
-
 const gameBoard = gameLogic.GameBoard();
-
 
 describe('It shoud create a blank board', () => {
   test('It should return an object', () => {
@@ -26,5 +24,4 @@ describe('It shoud create a blank board', () => {
     gameBoard.clearBoard();
     expect(gameBoard.avlPos()).toBe(9);
   });
-
 });
