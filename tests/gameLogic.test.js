@@ -58,29 +58,3 @@ describe('It shoud create a blank board', () => {
   });
 });
 
-describe('It shoud create a new game', () => {
-  test('It should return an object', () => {
-    expect(typeof game).toBe('object');
-  });
-  test('It should be able to mark the board', () => {
-    game.mark(0);
-    expect(game.board.getBoard()[0]).toBe('X');
-  });
-  test('It should switch turns after a mark', () => {
-    expect(game.currentTurn()).toBe(player2);
-  });
-  test('It should check if the game on before there is a winner', () => {
-    expect(game.isOn()).toBe(true);
-  });
-  test('It should know when the game is over', () => {
-    game.mark(1);
-    game.mark(8);
-    game.mark(4);
-    game.mark(3);
-    game.mark(7);
-    expect(game.getWinner()).toBe('PlayerTwo');
-  });
-  test('It should turn the game off once there is a winner', () => {
-    expect(game.isOn()).toBe(false);
-  });
-});
