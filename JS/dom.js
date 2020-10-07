@@ -18,7 +18,6 @@ let game;
 const player1 = gameLogic.Player();
 const player2 = gameLogic.Player();
 
-
 const showActivePlayer = () => {
   if (game.currentTurn() === player1) {
     p1Badge.classList.add('active');
